@@ -2,6 +2,7 @@ package org.lesson.java.spring_la_mia_pizzeria_crud.controller;
 
 import java.util.List;
 
+import org.lesson.java.spring_la_mia_pizzeria_crud.model.Offerta;
 import org.lesson.java.spring_la_mia_pizzeria_crud.model.Pizza;
 import org.lesson.java.spring_la_mia_pizzeria_crud.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-
-
-
 
 
 
@@ -110,6 +106,16 @@ public class PizzaController {
             repository.save(PizzaForm);
         
         return "redirect:/pizze";
+    }
+    
+    // creo il metodo get che si collega all id selezionato per creare una nuova offerta
+
+    @GetMapping("/{id}/offerta")
+    public String offerta(@PathVariable Integer id, Model model) {
+        Offerta offerta = new Offerta();
+        offerta.setPizza(repository.findById(id).get());
+        model.addAttribute("offerta", offerta);
+        return "offerta/create";
     }
     
     

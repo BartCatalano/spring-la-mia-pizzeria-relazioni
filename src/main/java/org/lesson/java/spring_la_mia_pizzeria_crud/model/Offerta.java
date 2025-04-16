@@ -33,4 +33,45 @@ public class Offerta {
     @NotBlank (message = "inserire Nome Offerta")
     private String nomeOfferta;
     
+
+    public Pizza getPizza() {
+        return this.pizza;
+    }
+
+    public void setPizza(Pizza pizza) {
+        this.pizza = pizza;
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public LocalDate getInizioOfferta() {
+        return this.inizioOfferta;
+    }
+
+    public void setInizioOfferta(LocalDate inizioOfferta) {
+        this.inizioOfferta = inizioOfferta;
+    }
+
+    public LocalDate getFineOfferta() {
+        return this.fineOfferta;
+    }
+
+    public void setFineOfferta(LocalDate fineOfferta) {
+        this.fineOfferta = fineOfferta;
+    }
+
+    public String getNomeOfferta() {
+        return this.nomeOfferta;
+    }
+
+    public void setNomeOfferta(String nomeOfferta) {
+        this.nomeOfferta = nomeOfferta;
+    }
+
 }
