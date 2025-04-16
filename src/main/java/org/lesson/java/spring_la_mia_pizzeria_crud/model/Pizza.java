@@ -1,19 +1,24 @@
 package org.lesson.java.spring_la_mia_pizzeria_crud.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 // imposto come entity
 @Entity
-// uso l'annotation table per cambiare nome alla tabella anche se lascio uguale
-
 public class Pizza {
+// creo la relazione one to many per la tabella delle offerte
+@OneToMany(mappedBy = "pizza")
+private List<Offerta> offerte;
+
+
     // creo le var d istanza delle pizza, in questo caso sono le colonne della tabella
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
