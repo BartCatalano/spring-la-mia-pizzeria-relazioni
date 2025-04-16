@@ -3,6 +3,7 @@ package org.lesson.java.spring_la_mia_pizzeria_crud.model;
 import java.math.BigDecimal;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,8 +16,16 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 public class Pizza {
 // creo la relazione one to many per la tabella delle offerte
-@OneToMany(mappedBy = "pizza")
+@OneToMany(mappedBy = "pizza", cascade = {CascadeType.REMOVE})
 private List<Offerta> offerte;
+
+    public List<Offerta> getOfferte() {
+        return this.offerte;
+    }
+
+    public void setOfferte(List<Offerta> offerte) {
+        this.offerte = offerte;
+    }
 
 
     // creo le var d istanza delle pizza, in questo caso sono le colonne della tabella

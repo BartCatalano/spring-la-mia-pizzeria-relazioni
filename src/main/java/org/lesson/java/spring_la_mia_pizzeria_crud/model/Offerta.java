@@ -28,7 +28,7 @@ public class Offerta {
     @PastOrPresent(message = "inserire una data valida di inizio offerta")
     private LocalDate inizioOfferta;
     @NotNull (message = "inserire data di fine")
-    @PastOrPresent(message = "inserire una data valida di fine offerta")
+    
     private LocalDate fineOfferta;
     @NotBlank (message = "inserire Nome Offerta")
     private String nomeOfferta;
