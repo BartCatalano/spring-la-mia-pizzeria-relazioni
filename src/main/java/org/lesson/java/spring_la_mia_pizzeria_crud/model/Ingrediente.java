@@ -21,4 +21,29 @@ public class Ingrediente {
     
     @NotBlank(message = "inserire il nome ingrediente")
     private String nameIngrediente;
+
+    public List<Pizza> getPizze() {
+        return this.pizze;
+    }
+
+    public void setPizze(List<Pizza> pizze) {
+        this.pizze = pizze;
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNameIngrediente() {
+        return this.nameIngrediente;
+    }
+
+    public void setNameIngrediente(String nameIngrediente) {
+        this.nameIngrediente = nameIngrediente;
+    }
+
 }
