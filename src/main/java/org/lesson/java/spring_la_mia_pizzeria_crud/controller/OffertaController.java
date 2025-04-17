@@ -26,11 +26,11 @@ public class OffertaController {
 
     @Autowired
     private OffertaRepository repository;
-
+// metodo post per creare la nuova offerta
  @PostMapping("/create")
     public String offertaSave(@Valid @ModelAttribute ("offerta") Offerta offertaForm, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()){
-            return "offerta/create-or-edit";}
+            return "offerta/create";}
             repository.save(offertaForm);
         
         return "redirect:/pizze";
@@ -39,16 +39,24 @@ public class OffertaController {
 @GetMapping("/edit/{id}")
 public String edit(@PathVariable Integer id, Model model) {
     model.addAttribute("offerta", repository.findById(id).get());
-    model.addAttribute("edit", true);
-    return "offerta/create-or-edit";
+    return "offerta/edit";
 }
 
 @PostMapping("/edit/{id}")
 public String updateOfferta (@Valid @ModelAttribute("offerta") Offerta offertaForm, BindingResult bindingResult, Model model  ){
     if(bindingResult.hasErrors()){
-        return "offerta/create-or-edit";}
+        return "offerta/edit";}
         repository.save(offertaForm);
         return "redirect:/pizze";
+}
+
+// DELETE
+
+@PostMapping("/delete/{id}")
+public String delete(@PathVariable ("id") Integer id) {
+    repository.deleteById(id);
+    
+    return "redirect:/pizze";
 }
 }
 
