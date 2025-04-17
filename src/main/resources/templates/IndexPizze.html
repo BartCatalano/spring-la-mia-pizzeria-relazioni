@@ -30,6 +30,7 @@
                         <p class="card-text">
                             Prezzo: <span th:text="${pizza.prezzo}"></span>
                         </p>
+                       <div th:each="ingrediente : ${pizza.getIngredienti()}"><span th:text="${ingrediente.nameIngrediente}"></span> </div> 
                         <!-- Bottone per aggiungere la pizza al carrello -->
                          <div class="row ml-2">
                         <a class="btn btn-primary btn-sm" th:href="@{/pizze/{id} (id=${pizza.id})}" th:text="dettaglio"></a>

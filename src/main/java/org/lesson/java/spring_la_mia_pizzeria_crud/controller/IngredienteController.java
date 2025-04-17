@@ -3,6 +3,7 @@ package org.lesson.java.spring_la_mia_pizzeria_crud.controller;
 import java.util.List;
 
 import org.lesson.java.spring_la_mia_pizzeria_crud.model.Ingrediente;
+import org.lesson.java.spring_la_mia_pizzeria_crud.model.Pizza;
 import org.lesson.java.spring_la_mia_pizzeria_crud.repository.IngredienteRepository;
 import org.lesson.java.spring_la_mia_pizzeria_crud.repository.OffertaRepository;
 import org.lesson.java.spring_la_mia_pizzeria_crud.repository.PizzaRepository;
@@ -80,6 +81,17 @@ public String updateIngrediente(@Valid @ModelAttribute("ingrediente") Ingredient
     return "redirect:/ingredienti";
 }
 
+// DELETE
+@PostMapping("/delete/{id}")
+public String deleteIngrediente(@PathVariable Integer id) {
+    Ingrediente ingredienteDaCancellare = ingredienteRepository.findById(id).get();
+
+    for(Pizza linkedPizza : ingredienteDaCancellare.getPizze()){
+        linkedPizza.getIngredienti().remove(ingredienteDaCancellare);
+    }
+    ingredienteRepository.delete(ingredienteDaCancellare);
+    return "redirect:/ingredienti";
+}
 
 
 

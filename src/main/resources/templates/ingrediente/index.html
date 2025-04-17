@@ -22,12 +22,18 @@
                     <tr>
                         <th>Nome Ingrediente</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="ingrediente : ${ingredienti}">
                         <td th:text="${ingrediente.nameIngrediente}">Nome</td>
                         <td><a class="btn btn-primary btn-sm" th:href="@{'/ingredienti/edit/' + ${ingrediente.id}}">Modifica ingrediente</a></td>
+                        <td>
+                            <form action="#" th:action="@{ingredienti/delete/{id} (id=${ingrediente.id})}" method="post">
+                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 </tbody>
             </table>

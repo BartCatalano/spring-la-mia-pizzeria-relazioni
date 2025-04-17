@@ -30,6 +30,14 @@ private List<Offerta> offerte;
  inverseJoinColumns = @JoinColumn(name = "ingrediente_id"))
 private List<Ingrediente> ingredienti;
 
+    public List<Ingrediente> getIngredienti() {
+        return this.ingredienti;
+    }
+
+    public void setIngredienti(List<Ingrediente> ingredienti) {
+        this.ingredienti = ingredienti;
+    }
+
     public List<Offerta> getOfferte() {
         return this.offerte;
     }
@@ -46,7 +54,7 @@ private List<Ingrediente> ingredienti;
 
     @NotBlank(message = "inserire il nome della pizza")
     private String name;
-    @NotBlank(message = "Inserire almeno un ingrediente")
+    @NotBlank(message = "Inserire la descrizione")
     private String descrizione;
 
     private String foto;

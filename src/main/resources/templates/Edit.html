@@ -17,9 +17,13 @@
             <ul class="alert alert-danger">
                 <li th:each="error : ${#fields.allErrors()}" th:text="${error}"/>
             </ul>
-        </div>   
+        </div> 
 
-
+        <div th:each="ingrediente : ${ingredienti}">
+            <input type="checkbox" th:value="${ingrediente.id}" th:field="*{ingredienti}" >
+            <label for="${ingrediente}">
+            <div th:text="${ingrediente.nameIngrediente}"></div></label>
+        </div>
         <div class="mb-3">
             <label class="form-label" for="name">Nome Pizza</label>
             <input class="form-control" type="text" id="name" th:field="*{name}">

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.lesson.java.spring_la_mia_pizzeria_crud.model.Offerta;
 import org.lesson.java.spring_la_mia_pizzeria_crud.model.Pizza;
+import org.lesson.java.spring_la_mia_pizzeria_crud.repository.IngredienteRepository;
 import org.lesson.java.spring_la_mia_pizzeria_crud.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,19 +24,24 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
-
 @Controller
 @RequestMapping("pizze")
 public class PizzaController {
 
+    private final IngredienteRepository ingredienteRepository;
+
       @Autowired
     private PizzaRepository repository;
+
+    PizzaController(IngredienteRepository ingredienteRepository) {
+        this.ingredienteRepository = ingredienteRepository;
+    }
 
     @GetMapping()
     public String pizze(Model model) {
         List<Pizza> pizze = repository.findAll();
         model.addAttribute("pizze", pizze );
-        
+        model.addAttribute("ingredienti", ingredienteRepository.findAll());
         return "IndexPizze";
     }
 
@@ -70,6 +76,7 @@ public class PizzaController {
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("pizza", new Pizza());
+        model.addAttribute("ingredienti", ingredienteRepository.findAll());
         return "create";
     }
     
@@ -96,6 +103,7 @@ public class PizzaController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
         model.addAttribute("pizza", repository.findById(id).get());
+        model.addAttribute("ingredienti", ingredienteRepository.findAll());
         return "edit";
     }
     
